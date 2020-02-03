@@ -90,13 +90,13 @@ module project_demo
         .enable(1'b1), 
         .reset_n(SW[9]), 
         .key_input(SW[3:0]),
-		  .direction(direction),
-		  .erase_tail(erase_tail), 
-		  .update_ram(update_ram), 
-		  .show(show), 
-		  .x(ram_connection_x), 
-		  .y(ram_connection_y)
-		);
+		.direction(direction),
+		.erase_tail(erase_tail), 
+		.update_ram(update_ram), 
+		.show(show), 
+		.x(ram_connection_x), 
+		.y(ram_connection_y)
+	);
     
     // Instansiate datapath
     datapath d0(
@@ -104,15 +104,15 @@ module project_demo
         .reset_n(SW[9]), 
         .ram_input_x(ram_connection_x), 
         .ram_input_y(ram_connection_y),
-		  .start(start), 
-		  .initiate(initiate), 
-		  .draw_head(draw_head), 
-		  .erase_tail(erase_tail),
-		  .plot(plot),
-		  .X(X), 
-		  .Y(Y), 
-		  .colour(colour)
-		); 
+		.start(start), 
+		.initiate(initiate), 
+		.draw_head(draw_head), 
+		.erase_tail(erase_tail),
+		.plot(plot),
+		.X(X), 
+		.Y(Y), 
+		.colour(colour)
+	); 
         
 
 
@@ -123,8 +123,8 @@ module project_demo
         .start(start), 
         .initiate(initiate), 
         .draw_head(draw_head),
-		  .erase_tail(erase_tail),
-		  .update_ram(update_ram),
+		.erase_tail(erase_tail),
+		.update_ram(update_ram),
         .show(show), 
         .current_state(LEDR[2:0]), 
         .next_state(LEDR[5:3]), 
@@ -152,16 +152,16 @@ module project_demo
 endmodule
 
 module DEC(SW, HEX0);
-     input [3:0] SW;
-     output [6:0] HEX0;
+	input [3:0] SW;
+	output [6:0] HEX0;
 
-     assign HEX0[0] = (~SW[3]&~SW[2]&~SW[1]&SW[0]) | (~SW[3]&SW[2]&~SW[1]&~SW[0]) | (SW[3]&SW[2]&~SW[1]&SW[0]) | (SW[3]&~SW[2]&SW[1]&SW[0]);
-     assign HEX0[1] = (~SW[3]&SW[2]&~SW[1]&SW[0]) | (SW[2]&SW[1]&~SW[0]) | (SW[3]&SW[2]&~SW[0]) | (SW[3]&SW[1]&SW[0]);
-     assign HEX0[2] = (~SW[3]&~SW[2]&SW[1]&~SW[0]) | (SW[3]&SW[2]&~SW[0]) | (SW[3]&SW[2]&SW[1]);
-     assign HEX0[3] = (~SW[3]&SW[2]&~SW[1]&~SW[0]) | (SW[3]&~SW[2]&SW[1]&~SW[0]) | (~SW[2]&~SW[1]&SW[0]) | (SW[2]&SW[1]&SW[0]);
-     assign HEX0[4] = (~SW[3]&SW[2]&~SW[1]) | (~SW[2]&~SW[1]&SW[0]) | (~SW[3]&SW[0]);
-     assign HEX0[5] = (SW[3]&SW[2]&~SW[1]&SW[0]) | (~SW[3]&~SW[2]&SW[0]) | (~SW[3]&~SW[2]&SW[1]) | (~SW[3]&SW[1]&SW[0]);
-     assign HEX0[6] = (~SW[3]&~SW[2]&~SW[1]) | (~SW[3]&SW[2]&SW[1]&SW[0]) | (SW[3]&SW[2]&~SW[1]&~SW[0]);
+	assign HEX0[0] = (~SW[3]&~SW[2]&~SW[1]&SW[0]) | (~SW[3]&SW[2]&~SW[1]&~SW[0]) | (SW[3]&SW[2]&~SW[1]&SW[0]) | (SW[3]&~SW[2]&SW[1]&SW[0]);
+	assign HEX0[1] = (~SW[3]&SW[2]&~SW[1]&SW[0]) | (SW[2]&SW[1]&~SW[0]) | (SW[3]&SW[2]&~SW[0]) | (SW[3]&SW[1]&SW[0]);
+	assign HEX0[2] = (~SW[3]&~SW[2]&SW[1]&~SW[0]) | (SW[3]&SW[2]&~SW[0]) | (SW[3]&SW[2]&SW[1]);
+	assign HEX0[3] = (~SW[3]&SW[2]&~SW[1]&~SW[0]) | (SW[3]&~SW[2]&SW[1]&~SW[0]) | (~SW[2]&~SW[1]&SW[0]) | (SW[2]&SW[1]&SW[0]);
+	assign HEX0[4] = (~SW[3]&SW[2]&~SW[1]) | (~SW[2]&~SW[1]&SW[0]) | (~SW[3]&SW[0]);
+	assign HEX0[5] = (SW[3]&SW[2]&~SW[1]&SW[0]) | (~SW[3]&~SW[2]&SW[0]) | (~SW[3]&~SW[2]&SW[1]) | (~SW[3]&SW[1]&SW[0]);
+	assign HEX0[6] = (~SW[3]&~SW[2]&~SW[1]) | (~SW[3]&SW[2]&SW[1]&SW[0]) | (SW[3]&SW[2]&~SW[1]&~SW[0]);
 
 endmodule 
 
@@ -187,8 +187,8 @@ endmodule
 
 module datapath(clock, reset_n, ram_input_x, ram_input_y, start, initiate, erase_tail, draw_head, plot, X, Y, colour);
 	input clock, reset_n, start, initiate, erase_tail, draw_head, plot;	
-   input [7:0] ram_input_x;
-   input [6:0] ram_input_y;
+	input [7:0] ram_input_x;
+	input [6:0] ram_input_y;
 	output reg [7:0] X;
 	output reg [6:0] Y;
 	output reg [2:0] colour;
@@ -346,8 +346,8 @@ module control(clock, reset_n, start, initiate, draw_head, update_ram, erase_tai
         ERASE_TAIL: begin
             plot = 1'b1;
             erase_tail = 1'b0;
-				draw_rate_counter_enable = 1'b1;
-				draw_rate_counter_reset_n = 1'b1;
+			draw_rate_counter_enable = 1'b1;
+			draw_rate_counter_reset_n = 1'b1;
         end
 
         WAIT: begin
@@ -373,9 +373,9 @@ module control(clock, reset_n, start, initiate, draw_head, update_ram, erase_tai
 		    draw_head = 1'b0;
             update_ram = 1'b0;
             erase_tail = 1'b1;
-				initiate_clock_reset_n = 1'b0;
-				draw_rate_counter_enable = 1'b0;
-				draw_rate_counter_reset_n = 1'b0;
+			initiate_clock_reset_n = 1'b0;
+			draw_rate_counter_enable = 1'b0;
+			draw_rate_counter_reset_n = 1'b0;
 		end	
             endcase
 	end
